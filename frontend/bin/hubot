@@ -1,0 +1,12 @@
+# !/bin/sh
+
+# set -e
+
+export BOTFUEL_APP_ID=9e4807c2
+export BOTFUEL_APP_KEY=4c6b12573ae11df62c1c37fb8aa93c89
+
+
+npm install
+export PATH="node_modules/.bin:node_modules/hubot/node_modules/.bin:$PATH"
+
+exec node_modules/.bin/hubot --name "TestSGBot" "$@"

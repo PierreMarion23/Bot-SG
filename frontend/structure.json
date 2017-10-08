@@ -1,0 +1,24 @@
+{
+	"merger_acquisition": {
+		"creation_date": "date",
+		"data_bool2": "category",
+		"data_bool_merger_acquisition": "category",
+		"data_categorical_merger_acquisition": "category",
+		"data_date_merger_acquisition": "date",
+		"data_num_merger_acquisition": "number",
+		"geographic": "category",
+		"index": "category",
+		"sector": "category"
+	},
+	"buy_back": {
+		"creation_date": "date",
+		"data_bool2": "category",
+		"data_bool_buy_back": "category",
+		"data_categorical_buy_back": "category",
+		"data_date_buy_back": "date",
+		"data_num_buy_back": "number",
+		"geographic": "category",
+		"index": "category",
+		"sector": "category"
+	}
+}

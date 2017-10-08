@@ -1,0 +1,76 @@
+{
+    "merger_acquisition": [
+        "caKey",
+        "type",
+        "status",
+        "takeOverType",
+        "maxCashTakeUp",
+        "maxSharesTakeUp",
+        "paymentType",
+        "share"
+    ],
+    "buy_back": [
+        "caKey",
+        "type",
+        "status",
+        "percentSought",
+        "buybackType",
+        "toAuctionProratationMethod",
+        "paymentType",
+        "buybackTaxed",
+        "lastTenderDate",
+        "serviceRatio",
+        "share"
+    ],
+    "optional_dividend": [
+        "caKey",
+        "status",
+        "exDate",
+        "hasCashStockOption",
+        "optionType",
+        "reinvestmentPxCalcDuration",
+        "reinvestmentPxCalcDiscount",
+        "reinvestmentRatio",
+        "*transferable",
+        "*tradable",
+        "*listedOnExchange",
+        "hasFxOption",
+        "share"
+    ],
+    "right_issue": [
+        "caKey",
+        "status",
+        "subscriptionPriceCurrency",
+        "amountToBeRaised",
+        "terms",
+        "exDate",
+        "*transferable",
+        "oversubscriptionType",
+        "*primaryAllocationMethod",
+        "*secondaryAllocationMethod",
+        "*tertiaryAllocationMethod",
+        "discountToTerpProspectusPublicationDate",
+        "primarySubscriptionRatio",
+        "secondarySubscriptionRatio",
+        "tertiarySubscriptionRatio",
+        "share"
+    ],    
+    "spin_off": [
+        "caKey",
+        "status",
+        "spinOffCompanyListedBeforeSpinOff",
+        "exDate",
+        "share"
+    ],
+    "convertible_bond": [
+        "caKey",
+        "status",
+        "amountIssued",
+        "*cbCurrency",
+        "*cbCoupon",
+        "issueDate",
+        "ratchetClause",
+        "share"
+    ]
+}
+

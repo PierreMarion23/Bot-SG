@@ -1,0 +1,61 @@
+name: bot-ca
+channels:
+- conda-forge
+- defaults
+dependencies:
+- aniso8601=1.2.0=py36_0
+- asn1crypto=0.22.0=py36_0
+- ca-certificates=2017.7.27.1=0
+- certifi=2017.7.27.1=py36_0
+- cffi=1.10.0=py36_0
+- chardet=3.0.4=py36_0
+- click=6.7=py36_0
+- cryptography=2.0.3=py36_0
+- flask=0.12.2=py36_0
+- flask-restful=0.3.6=py36_0
+- idna=2.5=py36_0
+- itsdangerous=0.24=py_2
+- jinja2=2.9.6=py36_0
+- markupsafe=1.0=py36_0
+- openssl=1.0.2l=vc14_0
+- pandas=0.20.3=py36_1
+- pip=9.0.1=py36_0
+- pycparser=2.18=py36_0
+- pycrypto=2.6.1=py36_1
+- pyopenssl=17.2.0=py36_0
+- pysocks=1.6.7=py36_0
+- python=3.6.2=0
+- python-dateutil=2.6.1=py36_0
+- pytz=2017.2=py36_0
+- requests=2.18.4=py36_1
+- setuptools=36.3.0=py36_0
+- six=1.10.0=py36_1
+- urllib3=1.22=py36_0
+- vs2015_runtime=14.0.25420=0
+- werkzeug=0.12.2=py_1
+- wheel=0.29.0=py36_0
+- win_inet_pton=1.0.1=py36_1
+- wincertstore=0.2=py36_0
+- mkl=2017.0.3=0
+- numpy=1.13.1=py36_0
+- pip:
+  - colorama==0.3.9
+  - decorator==4.1.2
+  - flask-cors==3.0.3
+  - ipykernel==4.6.1
+  - ipython==6.2.0
+  - ipython-genutils==0.2.0
+  - jedi==0.10.2
+  - jupyter-client==5.1.0
+  - jupyter-core==4.3.0
+  - pickleshare==0.7.4
+  - prompt-toolkit==1.0.15
+  - pygments==2.2.0
+  - pyzmq==16.0.2
+  - simplegeneric==0.8.1
+  - tornado==4.5.2
+  - traitlets==4.3.2
+  - wcwidth==0.1.7
+  - win-inet-pton==1.0.1
+prefix: C:\Users\pierr\Anaconda3\envs\bot-ca
+

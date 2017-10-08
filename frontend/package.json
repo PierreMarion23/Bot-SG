@@ -1,0 +1,36 @@
+{
+  "name": "botfuel-test-sg",
+  "version": "0.0.1",
+  "private": true,
+  "author": "pierre.marion@polytechnique.edu",
+  "description": "Botfuel bot for SG",
+  "scripts": {
+    "test": "mocha --timeout 30000 --compilers coffee:coffee-script/register tests/**/*.coffee",
+    "doc": "codo scripts -o codo - doc/*.md",
+    "style": "./node_modules/.bin/coffeelint scripts",
+    "clean": "echo \"flushall\n quit\n\" | redis-cli",
+    "build": "babel scripts/src/client_js/src -d scripts/src/client_js/dist",
+    "bot": "./bin/hubot"
+  },
+  "engines": {
+    "node": "8.1.4"
+  },
+  "dependencies": {
+    "@botfuel/bot-sdk": "2.50.0",
+    "axios": "^0.16.2",
+    "encodeurl": "^1.0.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.18.1",
+    "pkginfo": "^0.4.0",
+    "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "@botfuel/bot-qa": "^0.4.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "coffeelint": "^1.16.0",
+    "coffeelint-strict-camel-case-vars": "0.0.5",
+    "hubot-test-helper": "latest",
+    "moment-transform": "^1.0.1"
+  }
+}

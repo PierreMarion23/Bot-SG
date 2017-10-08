@@ -1,0 +1,23 @@
+{
+    "merger_acquisition": [
+        "creation_date", 
+        "geographic", 
+        "sector", 
+        "index", 
+        "data_bool_ma", 
+        "data_date_ma", 
+        "data_categorical_ma", 
+        "data_num_ma"
+    ],
+    "buy_back": [
+        "creation_date", 
+        "geographic", 
+        "sector", 
+        "index", 
+        "data_bool_bb", 
+        "data_date_bb", 
+        "data_categorical_bb", 
+        "data_num_bb"
+    ]
+}
+
