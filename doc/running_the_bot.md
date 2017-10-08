@@ -1,4 +1,4 @@
-# Botfuel SG Test
+# Botfuel doc: about running the bot
 
 ## Prerequisites
 

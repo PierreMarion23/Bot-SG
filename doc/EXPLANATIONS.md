@@ -1,7 +1,4 @@
-# Bot SG DataBase analysis
-
-## How is the bot launched ???
-Possible to do require a js file in coffeescript. Have the js apart from coffeescript for now. Good for modularity.
+# Bot SG DB request for humans
 
 ## bot.coffee
 Entry point of the bot.
