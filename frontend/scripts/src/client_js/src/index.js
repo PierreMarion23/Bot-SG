@@ -32,12 +32,35 @@ var init = function() {
 			update_dir_data()
 		});
 
-		fs.writeFile('structure.json', JSON.stringify(data['types'], null, '\t'), (err) => {
+		fs.writeFile('data/structure.json', JSON.stringify(data['types'], null, '\t'), (err) => {
 			console.log('The file json has been saved!');
 			if (err) throw err;	
 		});
 
 		var update_dir_data = function(){
+			Object.keys(data['common']).forEach(function(file_name){
+				console.log(file_name);
+				rimraf('data/' + file_name, (err) =>{
+					console.log('remove dir ' + file_name)
+					if (err){
+						console.log(err)
+					};
+					create_and_fill_dir()
+				});
+
+				var create_and_fill_dir = function(){
+					let content = data['common'][file_name];
+					fs.writeFile('data/' + file_name + '.eng.txt', content, (err) => {
+						console.log('The file ' + file_name + ' has been saved!');
+						if (err){
+							console.log(err)
+							return
+						}
+					});
+				};
+			});	
+
+
 			Object.keys(data['cat_values']).forEach(function(db_name){
 				console.log(db_name);
 				rimraf('data/' + db_name, (err) =>{
@@ -57,7 +80,7 @@ var init = function() {
 						}
 						let db_cat_columns = data['cat_values'][db_name];
 						Object.keys(db_cat_columns).forEach(function(db_cat_name){
-							fs.writeFile('data/' + db_name + '/' + db_cat_name + '.txt', db_cat_columns[db_cat_name], (err) => {
+							fs.writeFile('data/' + db_name + '/' + db_cat_name + '.eng.txt', db_cat_columns[db_cat_name], (err) => {
 								console.log('The file ' + db_cat_name + ' has been saved!');
 								if (err) throw err;	
 								});
@@ -103,8 +126,66 @@ var test_explo = function() {
 
 }
 
+
+var compute = function(data) {
+	
+		console.log('*********** api/compute');
+	
+		let success = (response) => {
+			console.log('in success');
+			var data = response.data;
+			console.log('data.res');
+			console.log(data.res);
+			// next_state(true, cb);
+		};
+	
+		let error = (response) => {
+			console.log('api error');
+			console.log(response.status, response.statusText);
+			// next_state(false, cb);
+		};
+	
+		let url = '/compute';
+		// let data = {
+		// 	'random': true,
+		// 	'modifiers': ['--verbose']
+		// }
+		myApi.Post(url, data, success, error);
+	
+	}
+
+
+var explore = function(data) {
+	
+	console.log('*********** api/exploration');
+
+	let success = (response) => {
+		console.log('in success');
+		var data = response.data;
+		console.log('data.res');
+		console.log(data.res);
+		// next_state(true, cb);
+	};
+
+	let error = (response) => {
+		console.log('api error');
+		console.log(response.status, response.statusText);
+		// next_state(false, cb);
+	};
+
+	let url = '/exploration';
+	// let data = {
+	// 	'random': true,
+	// 	'modifiers': ['--verbose']
+	// }
+	myApi.Post(url, data, success, error);
+
+}
+
 module.exports = {
 	sum: sum,
 	init: init,
-	test_explo: test_explo
+	test_explo: test_explo,
+	compute: compute,
+	explore: explore
 }

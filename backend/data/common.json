@@ -1,0 +1,42 @@
+{
+    "ca_type": [
+        ["merger_acquisition", "Merger&Acquisition", "ma"],
+        ["buy_back"],
+        ["optional_dividend"],
+        ["right_issue"],
+        ["spin_off"],
+        ["convertible_bond"]
+    ],
+    "computation": [
+        ["sum"],
+        ["count"],
+        ["average"],
+        ["median"],
+        ["standard deviation"]
+    ],
+    "geographic": [
+        ["geo 1"],
+        ["geo 2"],
+        ["geo 3"],
+        ["geo 4"],
+        ["geo 5"],
+        ["geo 6"]
+    ],
+    "index": [
+        ["index 1"],
+        ["index 2"],
+        ["index 3"],
+        ["index 4"],
+        ["index 5"],
+        ["index 6"]
+    ],
+    "sector":[
+        ["sector 1"],
+        ["sector 2"],
+        ["sector 3"],
+        ["sector 4"],
+        ["sector 5"],
+        ["sector 6"]
+    ]
+}
+

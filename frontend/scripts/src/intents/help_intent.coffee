@@ -8,12 +8,12 @@ class HelpIntent extends sdk.HelpIntent
 
   trainingSet: ->
     [
-      "Help"
+      "%help"
     ]
 
   usage: ->
     [
-      "Type 'Help' to print the help message"
+      "Type '%help' to print the help message"
     ]
 
 module.exports = HelpIntent

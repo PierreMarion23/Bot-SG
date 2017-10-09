@@ -11,6 +11,7 @@ class ComputeApi(Resource):
     def post(self):
 
         dic_input = request.json
+        print(dic_input)
         random = dic_input.pop('random') if 'random' in dic_input else False
         modifiers = dic_input.pop('modifiers') if 'modifiers' in dic_input else {}
 

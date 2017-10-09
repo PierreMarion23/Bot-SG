@@ -7,6 +7,7 @@ SendIntent = require('./intents/send_intent')
 ExampleIntent = require('./intents/example_intent')
 ReviewIntent = require('./intents/review_intent')
 StartIntent = require('./intents/start_intent')
+ExploreIntent = require('./intents/explore_intent')
 
 class Automaton extends sdk.Automaton
   constructor: (robot) ->
@@ -21,11 +22,12 @@ class Automaton extends sdk.Automaton
     @addIntent('examples', ExampleIntent)
     @addIntent('review', ReviewIntent)
     @addIntent('start', StartIntent)
+    @addIntent('explore', ExploreIntent)
 
     @addEngine('initialize', sdk.ConstantEngine, ['start'])
-    @addEngine('nlp_main', sdk.NlpEngine, ['hello', 'help', 'examples', 'review'])
+    @addEngine('nlp_main', sdk.NlpEngine, ['hello', 'help', 'explore', 'examples', 'review'])
     @addEngine('base_request', sdk.ConstantEngine, ['prompt_intent'])
-    @addEngine('send', sdk.NlpEngine, ['hello', 'help', 'send', 'review'])
+    @addEngine('send', sdk.NlpEngine, ['hello', 'help', 'explore', 'send', 'review'])
 
     @addState('initialize', ['initialize'])
     @addState('main', ['nlp_main', 'base_request'])

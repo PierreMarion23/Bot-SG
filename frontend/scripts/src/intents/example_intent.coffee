@@ -11,10 +11,10 @@ class ExampleIntent extends sdk.BaseIntent
   
   trainingSet: ->
     [
-      "Example"
+      "%example"
     ]
 
   usage: ->
-    "Type 'Example' to display examples of messages you can send to the bot."
+    "Type '%example' to display examples of messages you can send to the bot."
 
 module.exports = ExampleIntent

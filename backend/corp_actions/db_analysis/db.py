@@ -404,6 +404,8 @@ class DB:
         for name in self.MODEL:
             dic[name] = {}
             df = getattr(self, name)
+            if df is None:
+                continue
             df_nb = df.select_dtypes(include=['number'])
             df_dt = df.select_dtypes(include=['datetime'])
 

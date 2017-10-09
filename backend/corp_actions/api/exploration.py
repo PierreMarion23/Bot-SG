@@ -10,6 +10,7 @@ class ExplorationApi(Resource):
     def post(self):
 
         dic_input = request.json
+        print(dic_input)
         random = dic_input.pop('random') if 'random' in dic_input else False
         modifiers = dic_input.pop('modifiers') if 'modifiers' in dic_input else {}
         entity_name = dic_input.pop('entity_name') if 'entity_name' in dic_input else None  # not used for now

@@ -21,10 +21,10 @@ class ReviewIntent extends sdk.BaseIntent
 
   trainingSet: ->
     [
-      "Review"
+      "%review"
     ]
 
   usage: ->
-    "Type 'Review' to review the current state of your request."
+    "Type '%review' to review the current state of your request."
 
 module.exports = ReviewIntent

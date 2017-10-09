@@ -6,13 +6,13 @@ moment.locale('fr')
 
 FilterExtractor = require('../extractors/filter_extractor')
 TimeFrameExtractor = require('../extractors/time_frame_extractor')
-MainFieldExtractor = require('../extractors/main_field_extractor')
-SecondaryFieldWrapperExtractor = require('../extractors/secondary_field_wrapper_extractor')
+# FieldNameExtractor = require('../extractors/field_name_extractor')
+FieldWrapperExtractor = require('../extractors/field_wrapper_extractor')
 
 class PromptIntent extends sdk.PromptIntent
   LOGGER = Log4js.getLogger('PromptIntent')
-  MainCorpus = new sdk.FileCorpus('main_field', 'eng', __dirname + '/../corpora')
-  SecondaryCorpus = new sdk.FileCorpus('secondary_field', 'eng', __dirname + '/../corpora')
+#  MainCorpus = new sdk.FileCorpus('main_field', 'eng', __dirname + '/../corpora')
+#  SecondaryCorpus = new sdk.FileCorpus('secondary_field', 'eng', __dirname + '/../corpora')
 
   constructor: (automaton) ->
     super(automaton, 'prompt', 'root')
@@ -70,13 +70,13 @@ class PromptIntent extends sdk.PromptIntent
 
   # nice output of secondary field for user interaction
   # Uses ninja tricks in the way main_field corpus is built. See doc.
-  MAIN_FIELD = (value) ->
-    key = value[0]
-    for rawLine in MainCorpus.rawLines
-      words = rawLine.split(',')
-      keys = words.map((t) => MainCorpus.normalize(t.toLowerCase()))
-      if key.toLowerCase() in keys
-        return ['You want to perform the computation on field: ' + sdk.Corpus.trim(words[1])]
+  # MAIN_FIELD = (value) ->
+  #   key = value[0]
+  #   for rawLine in MainCorpus.rawLines
+  #     words = rawLine.split(',')
+  #     keys = words.map((t) => MainCorpus.normalize(t.toLowerCase()))
+  #     if key.toLowerCase() in keys
+  #       return ['You want to perform the computation on field: ' + sdk.Corpus.trim(words[1])]
 
   entities: ->
     'ca_type':
@@ -106,12 +106,13 @@ class PromptIntent extends sdk.PromptIntent
       extractor: new FilterExtractor('computation')
     'main_field':
       # question: ["On which field do you want to perform the computation?"]
-      information: MAIN_FIELD
-      extractor: new FilterExtractor('main_field')
+     # information: MAIN_FIELD
+      information: (values) -> ['You selected the main field(s): ' + values]
+      extractor: new FieldWrapperExtractor('main_field', @getBrain(), false)
     'secondary_fields':
       # question: ["On which secondary field do you want to perform the computation?"]
       information: SECONDARY_FIELD
-      extractor: new SecondaryFieldWrapperExtractor('secondary_fields', @getBrain())
+      extractor: new FieldWrapperExtractor('secondary_fields', @getBrain(), true)
 
 
   checkFieldsAreCorrect: (geographic, sector, index, time_frame, computation, main_field, secondary_fields, ca_type) ->
@@ -150,7 +151,7 @@ class PromptIntent extends sdk.PromptIntent
       return cb(null, { responses: responses })
 
     else
-      responses.push "Your request is now ready to be sent. Type 'Go' to send it now. You can also precise it."
+      responses.push "Your request is now ready to be sent. Type '%go' to send it now. You can also precise it."
       if geographic == undefined
         responses.push "You can add a geographic filter."
       if sector == undefined

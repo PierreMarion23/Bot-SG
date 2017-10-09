@@ -18,13 +18,10 @@ class HelloIntent extends sdk.BaseIntent
 
   trainingSet: ->
     [
-      "Hello"
-      "Restart"
-      "Stop"
-      "Cancel"
+      "%cancel"
     ]
 
   usage: ->
-    "Type 'Stop' to start a new conversation and return to the home message."
+    "Type '%cancel' to start a new conversation and return to the home message."
 
 module.exports = HelloIntent

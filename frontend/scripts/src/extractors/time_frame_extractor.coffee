@@ -1,10 +1,23 @@
 sdk = require('@botfuel/bot-sdk')
 Log4js = require('log4js')
+#Extractor = require('@botfuel/bot-sdk/src/extractors/extractor')
 
 class TimeFrameExtractor extends sdk.EntextExtractor
   LOGGER = Log4js.getLogger('TimeFrameExtractor')
   constructor: (key, locale) ->
     super(key, 'time', locale)
+  
+  extract: (id, robot, sentence, cb) ->
+    sentence = @normalizeSentence(sentence.split(',')[0])
+    if sentence?.length > 0
+      @extractFromNormalized(id, robot, sentence, (err, res) ->
+        if err
+          cb(err, null)
+        else
+          cb(null, res))
+    else
+      LOGGER.debug("extract: empty sentence")
+      cb(null, {})
 
   computeResult: (json) ->
     cleanJson = super(json)

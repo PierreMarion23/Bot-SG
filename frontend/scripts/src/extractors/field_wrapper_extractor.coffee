@@ -1,16 +1,17 @@
 sdk = require('@botfuel/bot-sdk')
 Log4js = require('log4js')
+fs = require('fs')
 
-SecondaryFieldNameExtractor = require('../extractors/secondary_field_name_extractor.coffee')
+FieldNameExtractor = require('../extractors/field_name_extractor.coffee')
 SecondaryFieldStrExtractor = require('../extractors/secondary_field_str_extractor.coffee')
 TimeFrameExtractor = require('../extractors/time_frame_extractor')
 common = require('@botfuel/bot-common')
 
-class SecondaryFieldWrapperExtractor extends sdk.Extractor
-  LOGGER = Log4js.getLogger('SecondaryFieldWrapperExtractor')
-  constructor: (key, funct) ->
-    @secondaryFieldNameExtractor = new SecondaryFieldNameExtractor('whatever')
+class FieldWrapperExtractor extends sdk.Extractor
+  LOGGER = Log4js.getLogger('FieldWrapperExtractor')
+  constructor: (key, funct, isSecondary) ->
     @getBrain = funct
+    @isSecondary = isSecondary
     super(key)
 
   extract: (id, robot, sentence, cb) ->
@@ -26,18 +27,49 @@ class SecondaryFieldWrapperExtractor extends sdk.Extractor
     #     if ! (sentence.includes(field_name))
     #       sentence = sentence +  ' ' + secondary_field
 
+    ca_type = common.User.get(id, @getBrain, 'ca_type')
+    if ca_type == undefined
+      return cb(null, {})
+    LOGGER.debug('ca_type ' + ca_type)
+    @FieldNameExtractor = new FieldNameExtractor(@key, ca_type)
+
     sentences = sentence.split(',')
+
+    if ! @isSecondary
+      sentence = sentences[0]
+      LOGGER.debug('not is secondary')
+      # @FieldNameExtractor.extract(id, robot, sentence, (err, result) =>
+      #   if err
+      #     return cb(err, null)
+      #   else
+      #     return cb(null, {
+      #       entity_key: @key
+      #       entity_value: result.entity_value
+      #     })
+      # )
+      @FieldNameExtractor.extract(id, robot, sentence, (err, result) => 
+        LOGGER.debug('in callback')
+        return cb(err, result)
+        )
+      return
+      LOGGER.debug('should not be read')
+
+    LOGGER.debug('is secondary')
+
     if sentences.length > 1
       sentences = sentences[1..]
     else
+      LOGGER.debug('null')
       return cb(null, {})
     outputs = {}
     field_names = []
 
-    dict_type = {"status":"str", "exDate":"date", 'id':'str'}
+    structure_str = fs.readFileSync('data/structure.json', 'utf8')
+    dict_type = JSON.parse(structure_str)
+    LOGGER.debug(dict_type)
 
     for sentence in sentences
-      @secondaryFieldNameExtractor.extract(id, robot, sentence, (err, result) =>
+      @FieldNameExtractor.extract(id, robot, sentence, (err, result) =>
         if err
           return cb(err, null)
         else
@@ -57,11 +89,11 @@ class SecondaryFieldWrapperExtractor extends sdk.Extractor
       LOGGER.debug(name)
       if name == '%not_understood' or ! name in dict_type
         continue
-      type = dict_type[name]
+      type = dict_type[ca_type][name]
       LOGGER.debug(type)
 
-      if type == 'str'
-        secondaryFieldStrExtractor = new SecondaryFieldStrExtractor(name)
+      if type == 'category'
+        secondaryFieldStrExtractor = new SecondaryFieldStrExtractor(ca_type, name)
         secondaryFieldStrExtractor.extract(id, robot, sentence, (err, result) =>
           if err
             return cb(err, null)
@@ -85,4 +117,4 @@ class SecondaryFieldWrapperExtractor extends sdk.Extractor
       })
   
 
-module.exports = SecondaryFieldWrapperExtractor
+module.exports = FieldWrapperExtractor
