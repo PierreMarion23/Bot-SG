@@ -6,7 +6,7 @@ See in the doc folder for detailed explanations about the bot.
 Files in folder test:
 + test_botfuel.js
 + test_botfuel.py
-+ .env
++ .env (contains keys but no pb since freely available from botfuel dev portal)
 
 are simple tests to show how to tap botfuel nlp entity extraction service.  
 
