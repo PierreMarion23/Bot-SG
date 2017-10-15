@@ -1,0 +1,16 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test_botfuel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "oscar6echo@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "botfuel-nlp-sdk": "^1.1.1",
+    "dotenv-extended": "^2.0.1",
+    "simple-node-logger": "^0.93.30"
+  }
+}

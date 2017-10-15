@@ -3,8 +3,10 @@ import os
 import requests
 import json
 
+# pip install python-dotenv
 from dotenv import load_dotenv
 
+# rename file key.txt to .env
 path_env = os.path.join(os.path.dirname(__file__), '.env')
 # path_env = os.path.join('.', '.env')
 
@@ -32,6 +34,8 @@ text = res.content.decode('utf-8')
 entities = json.loads(text)
 print(entities)
 print(json.dumps(entities, indent=2, sort_keys=True))
+
+# from botfuel doc
 
 # curl - X GET 'https://api.botfuel.io/nlp/entity-extraction'\
 #     '?sentence=221+Baker+St+London+NW1+6XE+UK'\
