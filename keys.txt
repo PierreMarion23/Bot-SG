@@ -1,0 +1,10 @@
+# Bot Framework Credentials
+
+MICROSOFT_APP_ID=
+MICROSOFT_APP_PASSWORD=
+
+
+# Botfuel Credentials
+
+BOTFUEL_APP_ID=36fce77d
+BOTFUEL_APP_KEY=6f7a0ba27650efcb8d2cf65f629125ac
